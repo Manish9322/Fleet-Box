@@ -1,3 +1,4 @@
+
 "use client"
 
 import {
@@ -17,13 +18,13 @@ import {
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { DateRangePicker } from "@/components/date-range-picker"
-import { BarChart, Users, Wallet, Car } from "lucide-react"
+import { BarChart, Users, Wallet, Car, PieChart as PieChartIcon } from "lucide-react"
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-import { Bar, BarChart as RechartsBarChart, CartesianGrid, XAxis, YAxis } from "recharts"
+import { Bar, BarChart as RechartsBarChart, CartesianGrid, XAxis, YAxis, PieChart, Pie, Cell, Legend } from "recharts"
 
 const chartData = [
   { month: "January", revenue: 12345 },
@@ -40,6 +41,20 @@ const chartConfig = {
     color: "hsl(var(--primary))",
   },
 }
+
+const bookingStatusData = [
+    { name: 'Completed', value: 1850, fill: 'hsl(var(--chart-1))' },
+    { name: 'In Progress', value: 250, fill: 'hsl(var(--chart-2))' },
+    { name: 'Scheduled', value: 150, fill: 'hsl(var(--chart-3))' },
+    { name: 'Cancelled', value: 100, fill: 'hsl(var(--chart-4))' },
+];
+
+const cabStatusData = [
+    { name: 'Available', value: 85, fill: 'hsl(var(--chart-1))' },
+    { name: 'Booked', value: 28, fill: 'hsl(var(--chart-2))' },
+    { name: 'Maintenance', value: 15, fill: 'hsl(var(--chart-5))' },
+]
+
 
 const recentBookings = [
     { id: 'BK001', customer: 'Harshal Mutadak', pickup: 'Seawoods Grand Central', dropoff: 'Inorbit Mall, Vashi', fare: '₹350', status: 'Completed' },
@@ -101,8 +116,8 @@ export default function DashboardPage() {
         </Card>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="lg:col-span-4">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+        <Card>
           <CardHeader>
             <CardTitle>Revenue Overview</CardTitle>
           </CardHeader>
@@ -118,7 +133,7 @@ export default function DashboardPage() {
             </ChartContainer>
           </CardContent>
         </Card>
-        <Card className="lg:col-span-3">
+        <Card>
           <CardHeader>
             <CardTitle>Recent Bookings</CardTitle>
             <CardDescription>You made 265 bookings this month.</CardDescription>
@@ -147,6 +162,44 @@ export default function DashboardPage() {
                 </TableBody>
              </Table>
           </CardContent>
+        </Card>
+         <Card>
+            <CardHeader>
+                <CardTitle>Bookings by Status</CardTitle>
+                <CardDescription>A breakdown of all customer bookings by their current status.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                 <ChartContainer config={{}} className="h-[300px] w-full">
+                    <PieChart>
+                        <ChartTooltip content={<ChartTooltipContent />} />
+                        <Pie data={bookingStatusData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} label>
+                             {bookingStatusData.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={entry.fill} />
+                            ))}
+                        </Pie>
+                         <Legend />
+                    </PieChart>
+                 </ChartContainer>
+            </CardContent>
+        </Card>
+         <Card>
+            <CardHeader>
+                <CardTitle>Cab Status Overview</CardTitle>
+                <CardDescription>Current status of all cabs in the fleet.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <ChartContainer config={{}} className="h-[300px] w-full">
+                    <PieChart>
+                        <ChartTooltip content={<ChartTooltipContent />} />
+                        <Pie data={cabStatusData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={100} label>
+                            {cabStatusData.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={entry.fill} />
+                            ))}
+                        </Pie>
+                        <Legend />
+                    </PieChart>
+                </ChartContainer>
+            </CardContent>
         </Card>
       </div>
     </div>
