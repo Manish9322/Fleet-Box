@@ -10,6 +10,7 @@ import {
   SidebarMenuButton,
   SidebarFooter,
   useSidebar,
+  SidebarTrigger,
 } from "@/components/ui/sidebar"
 import {
   Avatar,
@@ -46,19 +47,22 @@ export function AppSidebar() {
 
   return (
     <Sidebar variant="sidebar" collapsible="icon">
-      <SidebarHeader className="items-center justify-center p-4">
-        <Car
-          className={`text-primary transition-all duration-300 ${
-            state === "collapsed" ? "h-6 w-6" : "h-8 w-8"
-          }`}
-        />
-        <h1
-          className={`font-bold text-xl font-headline transition-all duration-300 ${
-            state === "collapsed" ? "opacity-0 w-0" : "opacity-100"
-          }`}
-        >
-          Fleet Navigator
-        </h1>
+      <SidebarHeader className="flex items-center justify-between p-4">
+         <div className="flex items-center gap-2">
+            <Car
+              className={`text-primary transition-all duration-300 ${
+                state === "collapsed" ? "h-6 w-6" : "h-8 w-8"
+              }`}
+            />
+            <h1
+              className={`font-bold text-xl font-headline transition-all duration-300 ${
+                state === "collapsed" ? "opacity-0 w-0" : "opacity-100"
+              }`}
+            >
+              Fleet Navigator
+            </h1>
+         </div>
+         <SidebarTrigger className="hidden sm:flex" />
       </SidebarHeader>
       <SidebarContent className="p-2">
         <SidebarMenu>
