@@ -121,6 +121,7 @@ export default function DashboardPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Revenue Overview</CardTitle>
+                <CardDescription>A summary of your recent revenue.</CardDescription>
               </CardHeader>
               <CardContent className="pl-2">
                 <ChartContainer config={chartConfig} className="h-[300px] w-full">
