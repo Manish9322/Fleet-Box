@@ -29,6 +29,7 @@ const formSchema = z.object({
   licensePlate: z.string().min(1, "License plate is required"),
   location: z.string().min(1, "Location is required"),
   status: z.enum(["Available", "Booked", "Maintenance"]),
+  imageUrl: z.string().url({ message: "Please enter a valid URL." }).optional().or(z.literal('')),
 })
 
 export function CabForm({ cab, onSave }: { cab?: any; onSave: () => void }) {
@@ -40,6 +41,7 @@ export function CabForm({ cab, onSave }: { cab?: any; onSave: () => void }) {
       licensePlate: "",
       location: "",
       status: "Available",
+      imageUrl: "",
     },
   })
 
@@ -111,6 +113,19 @@ export function CabForm({ cab, onSave }: { cab?: any; onSave: () => void }) {
                   <SelectItem value="Maintenance">Maintenance</SelectItem>
                 </SelectContent>
               </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="imageUrl"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Image URL</FormLabel>
+              <FormControl>
+                <Input placeholder="https://placehold.co/64x64.png" {...field} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}

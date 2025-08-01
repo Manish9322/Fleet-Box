@@ -30,6 +30,7 @@ const formSchema = z.object({
   phone: z.string().min(1, "Phone number is required"),
   vehicle: z.string().min(1, "Vehicle is required"),
   status: z.enum(["Active", "Inactive", "On-leave"]),
+  avatarUrl: z.string().url({ message: "Please enter a valid URL." }).optional().or(z.literal('')),
 })
 
 export function DriverForm({ driver, onSave }: { driver?: any; onSave: () => void }) {
@@ -42,6 +43,7 @@ export function DriverForm({ driver, onSave }: { driver?: any; onSave: () => voi
       phone: "",
       vehicle: "",
       status: "Active",
+      avatarUrl: "",
     },
   })
 
@@ -126,6 +128,19 @@ export function DriverForm({ driver, onSave }: { driver?: any; onSave: () => voi
                   <SelectItem value="On-leave">On-leave</SelectItem>
                 </SelectContent>
               </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+         <FormField
+          control={form.control}
+          name="avatarUrl"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Avatar URL</FormLabel>
+              <FormControl>
+                <Input placeholder="https://placehold.co/40x40.png" {...field} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
