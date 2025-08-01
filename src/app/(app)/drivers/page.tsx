@@ -33,47 +33,56 @@ import { AddDriverDialog, EditDriverDialog, ViewDriverDialog } from "./_componen
 const drivers = [
   {
     id: "DRV001",
-    name: "John Doe",
-    email: "john.doe@example.com",
-    phone: "+1-202-555-0104",
+    name: "Manish Sonawane",
+    email: "manish.sonawane@example.com",
+    phone: "+91-9876543210",
     vehicle: "Toyota Camry",
     status: "Active",
     avatarUrl: "https://placehold.co/40x40.png"
   },
   {
     id: "DRV002",
-    name: "Jane Smith",
-    email: "jane.smith@example.com",
-    phone: "+1-202-555-0162",
+    name: "Vrutik Patil",
+    email: "vrutik.patil@example.com",
+    phone: "+91-9876543211",
     vehicle: "Honda Accord",
     status: "Active",
     avatarUrl: "https://placehold.co/40x40.png"
   },
   {
     id: "DRV003",
-    name: "Sam Wilson",
-    email: "sam.wilson@example.com",
-    phone: "+1-202-555-0185",
+    name: "Sangram Rajput",
+    email: "sangram.rajput@example.com",
+    phone: "+91-9876543212",
     vehicle: "Ford Fusion",
     status: "Inactive",
     avatarUrl: "https://placehold.co/40x40.png"
   },
   {
     id: "DRV004",
-    name: "Emily Brown",
-    email: "emily.brown@example.com",
-    phone: "+1-202-555-0177",
+    name: "Tejas Khairnar",
+    email: "tejas.khairnar@example.com",
+    phone: "+91-9876543213",
     vehicle: "Chevrolet Malibu",
     status: "Active",
     avatarUrl: "https://placehold.co/40x40.png"
   },
   {
     id: "DRV005",
-    name: "Michael Clark",
-    email: "michael.clark@example.com",
-    phone: "+1-202-555-0199",
+    name: "Harshal Mutadak",
+    email: "harshal.mutadak@example.com",
+    phone: "+91-9876543214",
     vehicle: "Nissan Altima",
     status: "On-leave",
+    avatarUrl: "https://placehold.co/40x40.png"
+  },
+  {
+    id: "DRV006",
+    name: "Shubham Vanarse",
+    email: "shubham.vanarse@example.com",
+    phone: "+91-9876543215",
+    vehicle: "Hyundai Sonata",
+    status: "Active",
     avatarUrl: "https://placehold.co/40x40.png"
   },
 ];

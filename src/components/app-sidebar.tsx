@@ -87,11 +87,11 @@ export function AppSidebar() {
             >
               <Avatar className="h-8 w-8">
                 <AvatarImage data-ai-hint="person portrait" src="https://placehold.co/40x40.png" />
-                <AvatarFallback>AD</AvatarFallback>
+                <AvatarFallback>MS</AvatarFallback>
               </Avatar>
               <div className={`text-left leading-tight ${state === 'collapsed' ? 'hidden' : ''}`}>
-                <p className="font-semibold">Admin User</p>
-                <p className="text-xs text-muted-foreground">admin@fleet.com</p>
+                <p className="font-semibold">Manish S.</p>
+                <p className="text-xs text-muted-foreground">manish@fleet.com</p>
               </div>
               <ChevronDown className={`ml-auto h-4 w-4 transition-transform ${state === 'collapsed' ? 'hidden' : ''}`} />
             </Button>

@@ -28,9 +28,9 @@ import { AddUserDialog, EditUserDialog } from "./_components/user-dialogs";
 
 
 const users = [
-    { id: 'USR001', name: 'Admin User', email: 'admin@fleet.com', role: 'Admin', avatarUrl: 'https://placehold.co/40x40.png' },
-    { id: 'USR002', name: 'Support Staff', email: 'support@fleet.com', role: 'Support', avatarUrl: 'https://placehold.co/40x40.png' },
-    { id: 'USR003', name: 'Manager', email: 'manager@fleet.com', role: 'Manager', avatarUrl: 'https://placehold.co/40x40.png' },
+    { id: 'USR001', name: 'Manish Sonawane', email: 'manish@fleet.com', role: 'Admin', avatarUrl: 'https://placehold.co/40x40.png' },
+    { id: 'USR002', name: 'Vrutik Patil', email: 'vrutik@fleet.com', role: 'Support', avatarUrl: 'https://placehold.co/40x40.png' },
+    { id: 'USR003', name: 'Sangram Rajput', email: 'sangram@fleet.com', role: 'Manager', avatarUrl: 'https://placehold.co/40x40.png' },
 ]
 
 export default function SettingsPage() {
@@ -55,11 +55,11 @@ export default function SettingsPage() {
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Name</Label>
-                <Input id="name" defaultValue="Admin User" />
+                <Input id="name" defaultValue="Manish Sonawane" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" defaultValue="admin@fleet.com" />
+                <Input id="email" type="email" defaultValue="manish@fleet.com" />
               </div>
               <Button>Save Changes</Button>
             </CardContent>

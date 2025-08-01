@@ -42,11 +42,11 @@ const chartConfig = {
 }
 
 const recentBookings = [
-    { id: 'BK001', customer: 'Alice Johnson', pickup: '123 Main St', dropoff: '456 Oak Ave', fare: '$25.50', status: 'Completed' },
-    { id: 'BK002', customer: 'Bob Williams', pickup: '789 Pine Ln', dropoff: '101 Maple Dr', fare: '$15.00', status: 'Completed' },
-    { id: 'BK003', customer: 'Charlie Brown', pickup: '212 Elm St', dropoff: '333 Birch Rd', fare: '$45.75', status: 'In Progress' },
-    { id: 'BK004', customer: 'Diana Prince', pickup: '454 Spruce Ave', dropoff: '565 Cedar Ct', fare: '$32.20', status: 'Completed' },
-    { id: 'BK005', customer: 'Ethan Hunt', pickup: '787 Willow Way', dropoff: '898 Aspen Pl', fare: '$18.90', status: 'Cancelled' },
+    { id: 'BK001', customer: 'Harshal Mutadak', pickup: '123 Main St', dropoff: '456 Oak Ave', fare: '$25.50', status: 'Completed' },
+    { id: 'BK002', customer: 'Shubham Vanarse', pickup: '789 Pine Ln', dropoff: '101 Maple Dr', fare: '$15.00', status: 'Completed' },
+    { id: 'BK003', customer: 'Aarav Sharma', pickup: '212 Elm St', dropoff: '333 Birch Rd', fare: '$45.75', status: 'In Progress' },
+    { id: 'BK004', customer: 'Priya Patel', pickup: '454 Spruce Ave', dropoff: '565 Cedar Ct', fare: '$32.20', status: 'Completed' },
+    { id: 'BK005', customer: 'Rohan Mehta', pickup: '787 Willow Way', dropoff: '898 Aspen Pl', fare: '$18.90', status: 'Cancelled' },
 ]
 
 export default function DashboardPage() {

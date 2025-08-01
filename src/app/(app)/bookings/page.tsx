@@ -18,12 +18,12 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 
 const bookings = [
-  { id: 'BK001', customer: 'Alice Johnson', driver: 'John Doe', pickup: '123 Main St, Cityville', dropoff: '456 Oak Ave, Townburg', fare: '$25.50', status: 'Completed' },
-  { id: 'BK002', customer: 'Bob Williams', driver: 'Jane Smith', pickup: '789 Pine Ln, Villagetown', dropoff: '101 Maple Dr, Hamletville', fare: '$15.00', status: 'Completed' },
-  { id: 'BK003', customer: 'Charlie Brown', driver: 'John Doe', pickup: '212 Elm St, Suburbia', dropoff: '333 Birch Rd, Metrocity', fare: '$45.75', status: 'In Progress' },
-  { id: 'BK004', customer: 'Diana Prince', driver: 'Emily Brown', pickup: '454 Spruce Ave, Cityville', dropoff: '565 Cedar Ct, Townburg', fare: '$32.20', status: 'Completed' },
-  { id: 'BK005', customer: 'Ethan Hunt', driver: 'Jane Smith', pickup: '787 Willow Way, Villagetown', dropoff: '898 Aspen Pl, Hamletville', fare: '$18.90', status: 'Cancelled' },
-  { id: 'BK006', customer: 'Fiona Glenanne', driver: 'Michael Clark', pickup: '321 Oak St, Suburbia', dropoff: '654 Pine Ave, Metrocity', fare: '$55.00', status: 'Scheduled' },
+  { id: 'BK001', customer: 'Harshal Mutadak', driver: 'Manish Sonawane', pickup: '123 Main St, Cityville', dropoff: '456 Oak Ave, Townburg', fare: '$25.50', status: 'Completed' },
+  { id: 'BK002', customer: 'Shubham Vanarse', driver: 'Vrutik Patil', pickup: '789 Pine Ln, Villagetown', dropoff: '101 Maple Dr, Hamletville', fare: '$15.00', status: 'Completed' },
+  { id: 'BK003', customer: 'Aarav Sharma', driver: 'Manish Sonawane', pickup: '212 Elm St, Suburbia', dropoff: '333 Birch Rd, Metrocity', fare: '$45.75', status: 'In Progress' },
+  { id: 'BK004', customer: 'Priya Patel', driver: 'Tejas Khairnar', pickup: '454 Spruce Ave, Cityville', dropoff: '565 Cedar Ct, Townburg', fare: '$32.20', status: 'Completed' },
+  { id: 'BK005', customer: 'Rohan Mehta', driver: 'Vrutik Patil', pickup: '787 Willow Way, Villagetown', dropoff: '898 Aspen Pl, Hamletville', fare: '$18.90', status: 'Cancelled' },
+  { id: 'BK006', customer: 'Anjali Gupta', driver: 'Sangram Rajput', pickup: '321 Oak St, Suburbia', dropoff: '654 Pine Ave, Metrocity', fare: '$55.00', status: 'Scheduled' },
 ];
 
 export default function BookingsPage() {
