@@ -77,7 +77,7 @@ export function UserForm({ user, onSave }: { user?: any; onSave: () => void }) {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="e.g. jane.doe@example.com" {...field} />
+                    <Input type="email" placeholder="e.g. jane.doe@gmail.com" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

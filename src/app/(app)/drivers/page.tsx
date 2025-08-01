@@ -34,7 +34,7 @@ const drivers = [
   {
     id: "DRV001",
     name: "Manish Sonawane",
-    email: "manish.sonawane@example.com",
+    email: "manish.sonawane@gmail.com",
     phone: "+91-9876543210",
     vehicle: "Toyota Camry",
     status: "Active",
@@ -43,7 +43,7 @@ const drivers = [
   {
     id: "DRV002",
     name: "Vrutik Patil",
-    email: "vrutik.patil@example.com",
+    email: "vrutik.patil@gmail.com",
     phone: "+91-9876543211",
     vehicle: "Honda Accord",
     status: "Active",
@@ -52,7 +52,7 @@ const drivers = [
   {
     id: "DRV003",
     name: "Sangram Rajput",
-    email: "sangram.rajput@example.com",
+    email: "sangram.rajput@gmail.com",
     phone: "+91-9876543212",
     vehicle: "Ford Fusion",
     status: "Inactive",
@@ -61,7 +61,7 @@ const drivers = [
   {
     id: "DRV004",
     name: "Tejas Khairnar",
-    email: "tejas.khairnar@example.com",
+    email: "tejas.khairnar@gmail.com",
     phone: "+91-9876543213",
     vehicle: "Chevrolet Malibu",
     status: "Active",
@@ -70,7 +70,7 @@ const drivers = [
   {
     id: "DRV005",
     name: "Harshal Mutadak",
-    email: "harshal.mutadak@example.com",
+    email: "harshal.mutadak@gmail.com",
     phone: "+91-9876543214",
     vehicle: "Nissan Altima",
     status: "On-leave",
@@ -79,7 +79,7 @@ const drivers = [
   {
     id: "DRV006",
     name: "Shubham Vanarse",
-    email: "shubham.vanarse@example.com",
+    email: "shubham.vanarse@gmail.com",
     phone: "+91-9876543215",
     vehicle: "Hyundai Sonata",
     status: "Active",

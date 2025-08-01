@@ -79,7 +79,7 @@ export function DriverForm({ driver, onSave }: { driver?: any; onSave: () => voi
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="e.g. john.doe@example.com" {...field} />
+                  <Input type="email" placeholder="e.g. john.doe@gmail.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
