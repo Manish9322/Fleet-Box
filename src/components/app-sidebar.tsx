@@ -59,7 +59,7 @@ export function AppSidebar() {
                 state === "collapsed" ? "opacity-0 w-0" : "opacity-100"
               }`}
             >
-              Fleet Navigator
+              Fleet-Box
             </h1>
          </div>
          <SidebarTrigger className="hidden sm:flex" />

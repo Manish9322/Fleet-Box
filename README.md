@@ -1,19 +1,19 @@
-# Fleet Navigator
+# Fleet-Box
 
-**Fleet Navigator** is a comprehensive, full-stack fleet management platform designed to empower businesses by providing real-time insights and control over their vehicle operations. It offers a sleek and responsive dashboard with **driver and cab management**, **booking history**, **transaction logging**, and an **AI-powered support assistant**.
+**Fleet-Box** is a comprehensive, full-stack fleet management platform designed to empower businesses by providing real-time insights and control over their vehicle operations. It offers a sleek and responsive dashboard with **driver and cab management**, **booking history**, **transaction logging**, and an **AI-powered support assistant**.
 
 The platform is built with a modern technology stack, including **Next.js**, **React**, **TypeScript**, **Tailwind CSS**, **Shadcn UI**, and **Genkit** for its AI capabilities. This ensures a scalable, maintainable, and high-performance application.
 
-![Fleet Navigator](./image//Fleet-Box.png)
+![Fleet-Box](./image//Fleet-Box.png)
 
 ---
 
 ### Copyright Notice
-**Fleet Navigator**
+**Fleet-Box**
 
 Copyright © 2024 Manish Sonawane. All rights reserved.
 
-This project, **Fleet Navigator**, is a demonstration of a fleet management system. Unauthorized use, modification, or distribution of the software or its components is prohibited unless explicitly stated under the terms of the license.
+This project, **Fleet-Box**, is a demonstration of a fleet management system. Unauthorized use, modification, or distribution of the software or its components is prohibited unless explicitly stated under the terms of the license.
 
 By using or contributing to this project, you agree to comply with the terms and conditions defined in the license. You may use the software for personal or educational purposes, provided that proper credit is given to the original author.
 

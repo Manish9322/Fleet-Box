@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Fleet Navigator',
+  title: 'Fleet-Box',
   description: 'Manage your fleet with ease.',
 };
 

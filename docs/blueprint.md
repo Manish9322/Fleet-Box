@@ -1,4 +1,4 @@
-# **App Name**: Fleet Navigator
+# **App Name**: Fleet-Box
 
 ## Core Features:
 
