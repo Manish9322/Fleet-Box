@@ -56,7 +56,7 @@ export function UserForm({ user, onSave }: { user?: any; onSave: () => void }) {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         {!isEditMode && (
-          <>
+          <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="name"
@@ -83,7 +83,7 @@ export function UserForm({ user, onSave }: { user?: any; onSave: () => void }) {
                 </FormItem>
               )}
             />
-          </>
+          </div>
         )}
         <FormField
           control={form.control}
