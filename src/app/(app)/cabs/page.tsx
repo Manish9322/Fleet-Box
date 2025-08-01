@@ -1,4 +1,6 @@
 
+"use client"
+
 import {
   Table,
   TableBody,
@@ -26,6 +28,7 @@ import {
 import { MoreHorizontal, PlusCircle, Search } from "lucide-react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
+import { AddCabDialog, EditCabDialog, ViewCabDialog } from "./_components/cab-dialogs";
 
 const cabs = [
   {
@@ -86,9 +89,7 @@ export default function CabsPage() {
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input type="search" placeholder="Search cabs..." className="pl-8 w-full md:w-[300px]" />
               </div>
-              <Button>
-                <PlusCircle className="mr-2 h-4 w-4" /> Add Cab
-              </Button>
+              <AddCabDialog />
           </div>
         </div>
       </CardHeader>
@@ -141,8 +142,12 @@ export default function CabsPage() {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                      <DropdownMenuItem>Edit</DropdownMenuItem>
-                      <DropdownMenuItem>View Details</DropdownMenuItem>
+                       <EditCabDialog cab={cab}>
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>Edit</DropdownMenuItem>
+                       </EditCabDialog>
+                       <ViewCabDialog cab={cab}>
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>View Details</DropdownMenuItem>
+                       </ViewCabDialog>
                       <DropdownMenuItem className="text-destructive">Remove</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

@@ -1,3 +1,6 @@
+
+"use client"
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -20,7 +23,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { MoreHorizontal, PlusCircle } from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
+import { AddUserDialog, EditUserDialog } from "./_components/user-dialogs";
 
 
 const users = [
@@ -69,9 +73,7 @@ export default function SettingsPage() {
                   <CardTitle>Users & Roles</CardTitle>
                   <CardDescription>Manage user accounts, roles, and privileges.</CardDescription>
                 </div>
-                 <Button>
-                    <PlusCircle className="mr-2 h-4 w-4" /> Add User
-                 </Button>
+                 <AddUserDialog />
               </div>
             </CardHeader>
             <CardContent>
@@ -110,7 +112,9 @@ export default function SettingsPage() {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent>
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuItem>Edit Role</DropdownMenuItem>
+                            <EditUserDialog user={user}>
+                                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>Edit Role</DropdownMenuItem>
+                            </EditUserDialog>
                             <DropdownMenuItem>Reset Password</DropdownMenuItem>
                             <DropdownMenuItem className="text-destructive">Remove User</DropdownMenuItem>
                           </DropdownMenuContent>

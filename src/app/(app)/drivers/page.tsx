@@ -1,4 +1,6 @@
 
+"use client"
+
 import {
   Table,
   TableBody,
@@ -23,9 +25,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreHorizontal, PlusCircle, Search } from "lucide-react";
+import { MoreHorizontal, Search } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
+import { AddDriverDialog, EditDriverDialog, ViewDriverDialog } from "./_components/driver-dialogs";
 
 const drivers = [
   {
@@ -91,9 +94,7 @@ export default function DriversPage() {
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input type="search" placeholder="Search drivers..." className="pl-8 w-full md:w-[300px]" />
               </div>
-            <Button>
-              <PlusCircle className="mr-2 h-4 w-4" /> Add Driver
-            </Button>
+            <AddDriverDialog />
           </div>
         </div>
       </CardHeader>
@@ -150,8 +151,12 @@ export default function DriversPage() {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                      <DropdownMenuItem>Edit</DropdownMenuItem>
-                      <DropdownMenuItem>View Details</DropdownMenuItem>
+                      <EditDriverDialog driver={driver}>
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>Edit</DropdownMenuItem>
+                      </EditDriverDialog>
+                      <ViewDriverDialog driver={driver}>
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>View Details</DropdownMenuItem>
+                      </ViewDriverDialog>
                       <DropdownMenuItem className="text-destructive">Deactivate</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
