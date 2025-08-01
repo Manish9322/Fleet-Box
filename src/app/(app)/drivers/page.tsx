@@ -1,3 +1,4 @@
+
 import {
   Table,
   TableBody,
@@ -22,8 +23,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreHorizontal, PlusCircle } from "lucide-react";
+import { MoreHorizontal, PlusCircle, Search } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Input } from "@/components/ui/input";
 
 const drivers = [
   {
@@ -84,9 +86,15 @@ export default function DriversPage() {
               Manage your drivers and their information.
             </CardDescription>
           </div>
-          <Button>
-            <PlusCircle className="mr-2 h-4 w-4" /> Add Driver
-          </Button>
+          <div className="flex items-center gap-4">
+             <div className="relative">
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input type="search" placeholder="Search drivers..." className="pl-8 w-full md:w-[300px]" />
+              </div>
+            <Button>
+              <PlusCircle className="mr-2 h-4 w-4" /> Add Driver
+            </Button>
+          </div>
         </div>
       </CardHeader>
       <CardContent>
