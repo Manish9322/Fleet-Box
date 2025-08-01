@@ -9,7 +9,7 @@
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import {z} from 'zod';
 
 const GenerateResponseInputSchema = z.object({
   ticketText: z.string().describe('The text content of the customer support ticket.'),
@@ -42,7 +42,7 @@ const generateResponseFlow = ai.defineFlow(
     inputSchema: GenerateResponseInputSchema,
     outputSchema: GenerateResponseOutputSchema,
   },
-  async input => {
+  async (input: GenerateResponseInput) => {
     const {output} = await prompt(input);
     return output!;
   }

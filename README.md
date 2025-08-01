@@ -4,7 +4,7 @@
 
 The platform is built with a modern technology stack, including **Next.js**, **React**, **TypeScript**, **Tailwind CSS**, **Shadcn UI**, and **Genkit** for its AI capabilities. This ensures a scalable, maintainable, and high-performance application.
 
-![Fleet Navigator](https://placehold.co/800x400.png)
+![Fleet Navigator](./image//Fleet-Box.png)
 
 ---
 
