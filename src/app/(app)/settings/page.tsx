@@ -79,7 +79,7 @@ export default function SettingsPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>User</TableHead>
-                    <TableHead>Role</TableHead>
+                    <TableHead className="text-center">Role</TableHead>
                     <TableHead><span className="sr-only">Actions</span></TableHead>
                   </TableRow>
                 </TableHeader>
@@ -98,10 +98,10 @@ export default function SettingsPage() {
                           </div>
                         </div>
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="text-center">
                         <Badge variant={user.role === 'Admin' ? 'default' : 'secondary'}>{user.role}</Badge>
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
                             <Button size="icon" variant="ghost">

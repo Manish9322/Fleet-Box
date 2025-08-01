@@ -103,8 +103,8 @@ export default function DriversPage() {
             <TableRow>
               <TableHead>Driver</TableHead>
               <TableHead>Vehicle</TableHead>
-              <TableHead>Status</TableHead>
               <TableHead>Contact</TableHead>
+              <TableHead className="text-center">Status</TableHead>
               <TableHead>
                 <span className="sr-only">Actions</span>
               </TableHead>
@@ -119,11 +119,15 @@ export default function DriversPage() {
                       <AvatarImage data-ai-hint="person portrait" src={driver.avatarUrl} alt={driver.name} />
                       <AvatarFallback>{driver.name.charAt(0)}</AvatarFallback>
                     </Avatar>
-                    <div className="font-medium">{driver.name}</div>
+                    <div>
+                        <div className="font-medium">{driver.name}</div>
+                        <div className="text-muted-foreground text-xs">{driver.email}</div>
+                    </div>
                   </div>
                 </TableCell>
                 <TableCell>{driver.vehicle}</TableCell>
-                <TableCell>
+                <TableCell>{driver.phone}</TableCell>
+                <TableCell className="text-center">
                   <Badge
                     variant={
                       driver.status === "Active"
@@ -136,8 +140,7 @@ export default function DriversPage() {
                     {driver.status}
                   </Badge>
                 </TableCell>
-                <TableCell>{driver.phone}</TableCell>
-                <TableCell>
+                <TableCell className="text-right">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button aria-haspopup="true" size="icon" variant="ghost">

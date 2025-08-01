@@ -128,16 +128,18 @@ export default function DashboardPage() {
                 <TableHeader>
                     <TableRow>
                         <TableHead>Customer</TableHead>
-                        <TableHead>Fare</TableHead>
-                        <TableHead>Status</TableHead>
+                        <TableHead className="text-right">Fare</TableHead>
+                        <TableHead className="text-center">Status</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {recentBookings.slice(0,5).map(booking => (
                         <TableRow key={booking.id}>
-                            <TableCell className="font-medium">{booking.customer}</TableCell>
-                            <TableCell>{booking.fare}</TableCell>
                             <TableCell>
+                              <div className="font-medium">{booking.customer}</div>
+                            </TableCell>
+                            <TableCell className="text-right">{booking.fare}</TableCell>
+                            <TableCell className="text-center">
                                 <Badge variant={booking.status === 'Completed' ? 'default' : booking.status === 'In Progress' ? 'secondary' : 'destructive'} className="capitalize">{booking.status.toLowerCase()}</Badge>
                             </TableCell>
                         </TableRow>

@@ -43,8 +43,7 @@ export default function TransactionsPage() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Transaction ID</TableHead>
-              <TableHead>Booking ID</TableHead>
+              <TableHead>Transaction / Booking ID</TableHead>
               <TableHead>Date</TableHead>
               <TableHead>Payment Type</TableHead>
               <TableHead className="text-right">Amount</TableHead>
@@ -54,8 +53,10 @@ export default function TransactionsPage() {
           <TableBody>
             {transactions.map((transaction) => (
               <TableRow key={transaction.id}>
-                <TableCell className="font-mono">{transaction.id}</TableCell>
-                <TableCell className="font-mono">{transaction.bookingId}</TableCell>
+                <TableCell>
+                  <div className="font-mono">{transaction.id}</div>
+                  <div className="text-xs text-muted-foreground font-mono">{transaction.bookingId}</div>
+                </TableCell>
                 <TableCell>{transaction.date}</TableCell>
                 <TableCell>{transaction.type}</TableCell>
                 <TableCell className="text-right">{transaction.amount}</TableCell>

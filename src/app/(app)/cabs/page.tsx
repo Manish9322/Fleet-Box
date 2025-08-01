@@ -98,8 +98,8 @@ export default function CabsPage() {
             <TableRow>
               <TableHead>Vehicle</TableHead>
               <TableHead>License Plate</TableHead>
-              <TableHead>Status</TableHead>
               <TableHead>Current Location</TableHead>
+              <TableHead className="text-center">Status</TableHead>
               <TableHead>
                 <span className="sr-only">Actions</span>
               </TableHead>
@@ -110,14 +110,15 @@ export default function CabsPage() {
               <TableRow key={cab.id}>
                 <TableCell>
                   <div className="flex items-center gap-3">
-                    <Image data-ai-hint="car side" src={cab.imageUrl} alt={cab.model} width={64} height={64} className="rounded-md" />
+                    <Image data-ai-hint="car side" src={cab.imageUrl} alt={cab.model} width={40} height={40} className="rounded-md" />
                     <div className="font-medium">{cab.model}</div>
                   </div>
                 </TableCell>
                 <TableCell>
                   <Badge variant="outline">{cab.licensePlate}</Badge>
                 </TableCell>
-                <TableCell>
+                <TableCell>{cab.location}</TableCell>
+                <TableCell className="text-center">
                   <Badge
                     variant={
                       cab.status === "Available"
@@ -130,8 +131,7 @@ export default function CabsPage() {
                     {cab.status}
                   </Badge>
                 </TableCell>
-                <TableCell>{cab.location}</TableCell>
-                <TableCell>
+                <TableCell className="text-right">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button aria-haspopup="true" size="icon" variant="ghost">

@@ -49,8 +49,7 @@ export default function BookingsPage() {
             <TableRow>
               <TableHead>Customer</TableHead>
               <TableHead>Driver</TableHead>
-              <TableHead>Pickup</TableHead>
-              <TableHead>Drop-off</TableHead>
+              <TableHead>Pickup / Drop-off</TableHead>
               <TableHead className="text-right">Fare</TableHead>
               <TableHead className="text-center">Status</TableHead>
             </TableRow>
@@ -58,10 +57,14 @@ export default function BookingsPage() {
           <TableBody>
             {bookings.map((booking) => (
               <TableRow key={booking.id}>
-                <TableCell className="font-medium">{booking.customer}</TableCell>
+                <TableCell>
+                  <div className="font-medium">{booking.customer}</div>
+                </TableCell>
                 <TableCell>{booking.driver}</TableCell>
-                <TableCell>{booking.pickup}</TableCell>
-                <TableCell>{booking.dropoff}</TableCell>
+                <TableCell>
+                    <div>{booking.pickup}</div>
+                    <div className="text-muted-foreground text-xs">{booking.dropoff}</div>
+                </TableCell>
                 <TableCell className="text-right">{booking.fare}</TableCell>
                 <TableCell className="text-center">
                   <Badge
