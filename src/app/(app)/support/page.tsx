@@ -13,6 +13,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SupportForm } from "./_components/support-form";
+import { Button } from "@/components/ui/button";
+import { LifeBuoy } from "lucide-react";
 
 const faqs = [
     {
@@ -52,7 +54,7 @@ const faqs = [
 export default function SupportPage() {
   return (
     <div className="grid gap-8 lg:grid-cols-3">
-      <div className="lg:col-span-2">
+      <div className="lg:col-span-2 space-y-8">
         <Card>
           <CardHeader>
             <CardTitle className="font-headline">Support Ticket Assistant</CardTitle>
@@ -63,6 +65,21 @@ export default function SupportPage() {
           <CardContent>
             <SupportForm />
           </CardContent>
+        </Card>
+        <Card>
+            <CardHeader>
+                <CardTitle>Need More Help?</CardTitle>
+                <CardDescription>If you can't find what you're looking for, our team is here to assist.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div className="space-y-4">
+                    <p className="text-sm text-muted-foreground">Our support team is available around the clock to help you with any issues or questions you might have. For immediate assistance, you can start a live chat with one of our agents.</p>
+                    <Button>
+                        <LifeBuoy className="mr-2 h-4 w-4" />
+                        Start Live Chat
+                    </Button>
+                </div>
+            </CardContent>
         </Card>
       </div>
       <div className="lg:col-span-1">
