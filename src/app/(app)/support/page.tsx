@@ -13,8 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SupportForm } from "./_components/support-form";
-import { Button } from "@/components/ui/button";
-import { LifeBuoy } from "lucide-react";
+import { LiveChatDialog } from "./_components/live-chat-dialog";
 
 const faqs = [
     {
@@ -74,10 +73,7 @@ export default function SupportPage() {
             <CardContent>
                 <div className="space-y-4">
                     <p className="text-sm text-muted-foreground">Our support team is available around the clock to help you with any issues or questions you might have. For immediate assistance, you can start a live chat with one of our agents.</p>
-                    <Button>
-                        <LifeBuoy className="mr-2 h-4 w-4" />
-                        Start Live Chat
-                    </Button>
+                    <LiveChatDialog />
                 </div>
             </CardContent>
         </Card>
