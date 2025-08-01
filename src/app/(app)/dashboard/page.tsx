@@ -117,90 +117,94 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Revenue Overview</CardTitle>
-          </CardHeader>
-          <CardContent className="pl-2">
-            <ChartContainer config={chartConfig} className="h-[300px] w-full">
-              <RechartsBarChart data={chartData}>
-                <CartesianGrid vertical={false} />
-                <XAxis dataKey="month" tickLine={false} tickMargin={10} axisLine={false} />
-                <YAxis tickLine={false} axisLine={false} tickMargin={10} tickFormatter={(value) => `₹${value / 1000}K`} />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Bar dataKey="revenue" fill="var(--color-revenue)" radius={4} />
-              </RechartsBarChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Bookings</CardTitle>
-            <CardDescription>You made 265 bookings this month.</CardDescription>
-          </CardHeader>
-          <CardContent>
-             <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead>Customer</TableHead>
-                        <TableHead className="text-right">Fare</TableHead>
-                        <TableHead className="text-center">Status</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {recentBookings.slice(0,5).map(booking => (
-                        <TableRow key={booking.id}>
-                            <TableCell>
-                              <div className="font-medium">{booking.customer}</div>
-                            </TableCell>
-                            <TableCell className="text-right">{booking.fare}</TableCell>
-                            <TableCell className="text-center">
-                                <Badge variant={booking.status === 'Completed' ? 'default' : booking.status === 'In Progress' ? 'secondary' : 'destructive'} className="capitalize">{booking.status.toLowerCase()}</Badge>
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-             </Table>
-          </CardContent>
-        </Card>
-         <Card>
-            <CardHeader>
-                <CardTitle>Bookings by Status</CardTitle>
-                <CardDescription>A breakdown of all customer bookings by their current status.</CardDescription>
-            </CardHeader>
-            <CardContent>
-                 <ChartContainer config={{}} className="h-[300px] w-full">
-                    <PieChart>
-                        <ChartTooltip content={<ChartTooltipContent />} />
-                        <Pie data={bookingStatusData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} label>
-                             {bookingStatusData.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={entry.fill} />
-                            ))}
-                        </Pie>
-                         <Legend />
-                    </PieChart>
-                 </ChartContainer>
-            </CardContent>
-        </Card>
-         <Card>
-            <CardHeader>
-                <CardTitle>Cab Status Overview</CardTitle>
-                <CardDescription>Current status of all cabs in the fleet.</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <ChartContainer config={{}} className="h-[300px] w-full">
-                    <PieChart>
-                        <ChartTooltip content={<ChartTooltipContent />} />
-                        <Pie data={cabStatusData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={100} label>
-                            {cabStatusData.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={entry.fill} />
-                            ))}
-                        </Pie>
-                        <Legend />
-                    </PieChart>
+        <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Revenue Overview</CardTitle>
+              </CardHeader>
+              <CardContent className="pl-2">
+                <ChartContainer config={chartConfig} className="h-[300px] w-full">
+                  <RechartsBarChart data={chartData}>
+                    <CartesianGrid vertical={false} />
+                    <XAxis dataKey="month" tickLine={false} tickMargin={10} axisLine={false} />
+                    <YAxis tickLine={false} axisLine={false} tickMargin={10} tickFormatter={(value) => `₹${value / 1000}K`} />
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Bar dataKey="revenue" fill="var(--color-revenue)" radius={4} />
+                  </RechartsBarChart>
                 </ChartContainer>
-            </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Recent Bookings</CardTitle>
+                <CardDescription>You made 265 bookings this month.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                 <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead>Customer</TableHead>
+                            <TableHead className="text-right">Fare</TableHead>
+                            <TableHead className="text-center">Status</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {recentBookings.slice(0,5).map(booking => (
+                            <TableRow key={booking.id}>
+                                <TableCell>
+                                  <div className="font-medium">{booking.customer}</div>
+                                </TableCell>
+                                <TableCell className="text-right">{booking.fare}</TableCell>
+                                <TableCell className="text-center">
+                                    <Badge variant={booking.status === 'Completed' ? 'default' : booking.status === 'In Progress' ? 'secondary' : 'destructive'} className="capitalize">{booking.status.toLowerCase()}</Badge>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                 </Table>
+              </CardContent>
+            </Card>
+        </div>
+         <div className="space-y-6">
+            <Card>
+                <CardHeader>
+                    <CardTitle>Bookings by Status</CardTitle>
+                    <CardDescription>A breakdown of all customer bookings by their current status.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                     <ChartContainer config={{}} className="h-[300px] w-full">
+                        <PieChart>
+                            <ChartTooltip content={<ChartTooltipContent />} />
+                            <Pie data={bookingStatusData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} label>
+                                 {bookingStatusData.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                                ))}
+                            </Pie>
+                             <Legend />
+                        </PieChart>
+                     </ChartContainer>
+                </CardContent>
+            </Card>
+             <Card>
+                <CardHeader>
+                    <CardTitle>Cab Status Overview</CardTitle>
+                    <CardDescription>Current status of all cabs in the fleet.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <ChartContainer config={{}} className="h-[300px] w-full">
+                        <PieChart>
+                            <ChartTooltip content={<ChartTooltipContent />} />
+                            <Pie data={cabStatusData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={100} label>
+                                {cabStatusData.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                                ))}
+                            </Pie>
+                            <Legend />
+                        </PieChart>
+                    </ChartContainer>
+                </CardContent>
+            </Card>
+         </div>
       </div>
     </div>
   )
