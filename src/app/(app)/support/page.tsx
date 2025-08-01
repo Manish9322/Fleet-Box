@@ -34,6 +34,18 @@ const faqs = [
      {
         question: "What if I lose an item in a cab?",
         answer: "If you've left an item in one of our cabs, please contact our customer support team immediately through the app or by calling our helpline. Provide your booking details, and we will do our best to help you retrieve your lost item."
+    },
+    {
+        question: "How do I rate my driver?",
+        answer: "After your trip is completed, you will be prompted to rate your driver and provide feedback on your experience. Your ratings help us maintain a high quality of service."
+    },
+    {
+        question: "Are there any waiting charges?",
+        answer: "A nominal waiting charge may be applied if your driver has to wait for more than 5 minutes at the pickup location. The charges will be reflected in your final bill."
+    },
+    {
+        question: "Can I schedule a ride in advance?",
+        answer: "Yes, you can schedule a ride for a later date and time using the 'Schedule Ride' feature in the app. This is perfect for planning airport transfers or important appointments."
     }
 ]
 
