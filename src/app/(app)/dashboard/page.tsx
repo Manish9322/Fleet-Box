@@ -42,11 +42,11 @@ const chartConfig = {
 }
 
 const recentBookings = [
-    { id: 'BK001', customer: 'Harshal Mutadak', pickup: '123 Main St', dropoff: '456 Oak Ave', fare: '$25.50', status: 'Completed' },
-    { id: 'BK002', customer: 'Shubham Vanarse', pickup: '789 Pine Ln', dropoff: '101 Maple Dr', fare: '$15.00', status: 'Completed' },
-    { id: 'BK003', customer: 'Aarav Sharma', pickup: '212 Elm St', dropoff: '333 Birch Rd', fare: '$45.75', status: 'In Progress' },
-    { id: 'BK004', customer: 'Priya Patel', pickup: '454 Spruce Ave', dropoff: '565 Cedar Ct', fare: '$32.20', status: 'Completed' },
-    { id: 'BK005', customer: 'Rohan Mehta', pickup: '787 Willow Way', dropoff: '898 Aspen Pl', fare: '$18.90', status: 'Cancelled' },
+    { id: 'BK001', customer: 'Harshal Mutadak', pickup: 'Seawoods Grand Central', dropoff: 'Inorbit Mall, Vashi', fare: '₹350', status: 'Completed' },
+    { id: 'BK002', customer: 'Shubham Vanarse', pickup: 'Kharghar Valley Golf Course', dropoff: 'Utsav Chowk, Kharghar', fare: '₹200', status: 'Completed' },
+    { id: 'BK003', customer: 'Aarav Sharma', pickup: 'DY Patil Stadium, Nerul', dropoff: 'Belapur CBD', fare: '₹275', status: 'In Progress' },
+    { id: 'BK004', customer: 'Priya Patel', pickup: 'Vashi Railway Station', dropoff: 'Palm Beach Road', fare: '₹180', status: 'Completed' },
+    { id: 'BK005', customer: 'Rohan Mehta', pickup: 'Airoli Knowledge Park', dropoff: 'Ghansoli', fare: '₹220', status: 'Cancelled' },
 ]
 
 export default function DashboardPage() {
@@ -65,7 +65,7 @@ export default function DashboardPage() {
             <Wallet className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$45,231.89</div>
+            <div className="text-2xl font-bold">₹4,52,318.89</div>
             <p className="text-xs text-muted-foreground">+20.1% from last month</p>
           </CardContent>
         </Card>
@@ -111,7 +111,7 @@ export default function DashboardPage() {
               <RechartsBarChart data={chartData}>
                 <CartesianGrid vertical={false} />
                 <XAxis dataKey="month" tickLine={false} tickMargin={10} axisLine={false} />
-                <YAxis tickLine={false} axisLine={false} tickMargin={10} tickFormatter={(value) => `$${value / 1000}K`} />
+                <YAxis tickLine={false} axisLine={false} tickMargin={10} tickFormatter={(value) => `₹${value / 1000}K`} />
                 <ChartTooltip content={<ChartTooltipContent />} />
                 <Bar dataKey="revenue" fill="var(--color-revenue)" radius={4} />
               </RechartsBarChart>

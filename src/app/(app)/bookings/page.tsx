@@ -18,12 +18,12 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 
 const bookings = [
-  { id: 'BK001', customer: 'Harshal Mutadak', driver: 'Manish Sonawane', pickup: '123 Main St, Cityville', dropoff: '456 Oak Ave, Townburg', fare: '$25.50', status: 'Completed' },
-  { id: 'BK002', customer: 'Shubham Vanarse', driver: 'Vrutik Patil', pickup: '789 Pine Ln, Villagetown', dropoff: '101 Maple Dr, Hamletville', fare: '$15.00', status: 'Completed' },
-  { id: 'BK003', customer: 'Aarav Sharma', driver: 'Manish Sonawane', pickup: '212 Elm St, Suburbia', dropoff: '333 Birch Rd, Metrocity', fare: '$45.75', status: 'In Progress' },
-  { id: 'BK004', customer: 'Priya Patel', driver: 'Tejas Khairnar', pickup: '454 Spruce Ave, Cityville', dropoff: '565 Cedar Ct, Townburg', fare: '$32.20', status: 'Completed' },
-  { id: 'BK005', customer: 'Rohan Mehta', driver: 'Vrutik Patil', pickup: '787 Willow Way, Villagetown', dropoff: '898 Aspen Pl, Hamletville', fare: '$18.90', status: 'Cancelled' },
-  { id: 'BK006', customer: 'Anjali Gupta', driver: 'Sangram Rajput', pickup: '321 Oak St, Suburbia', dropoff: '654 Pine Ave, Metrocity', fare: '$55.00', status: 'Scheduled' },
+  { id: 'BK001', customer: 'Harshal Mutadak', driver: 'Manish Sonawane', pickup: 'Seawoods Grand Central, Navi Mumbai', dropoff: 'Inorbit Mall, Vashi, Navi Mumbai', fare: '₹350', status: 'Completed' },
+  { id: 'BK002', customer: 'Shubham Vanarse', driver: 'Vrutik Patil', pickup: 'Kharghar Valley Golf Course, Navi Mumbai', dropoff: 'Utsav Chowk, Kharghar, Navi Mumbai', fare: '₹200', status: 'Completed' },
+  { id: 'BK003', customer: 'Aarav Sharma', driver: 'Manish Sonawane', pickup: 'DY Patil Stadium, Nerul, Navi Mumbai', dropoff: 'Belapur CBD, Navi Mumbai', fare: '₹275', status: 'In Progress' },
+  { id: 'BK004', customer: 'Priya Patel', driver: 'Tejas Khairnar', pickup: 'Vashi Railway Station, Navi Mumbai', dropoff: 'Palm Beach Road, Navi Mumbai', fare: '₹180', status: 'Completed' },
+  { id: 'BK005', customer: 'Rohan Mehta', driver: 'Vrutik Patil', pickup: 'Airoli Knowledge Park, Navi Mumbai', dropoff: 'Ghansoli, Navi Mumbai', fare: '₹220', status: 'Cancelled' },
+  { id: 'BK006', customer: 'Anjali Gupta', driver: 'Sangram Rajput', pickup: 'Panvel, Navi Mumbai', dropoff: 'Juinagar, Navi Mumbai', fare: '₹450', status: 'Scheduled' },
 ];
 
 export default function BookingsPage() {

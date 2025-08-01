@@ -17,12 +17,12 @@ import {
 import { DateRangePicker } from "@/components/date-range-picker";
 
 const transactions = [
-    { id: 'TRN001', bookingId: 'BK001', date: '2023-10-26', amount: '$25.50', type: 'Card', status: 'Completed' },
-    { id: 'TRN002', bookingId: 'BK002', date: '2023-10-25', amount: '$15.00', type: 'Cash', status: 'Completed' },
-    { id: 'TRN003', bookingId: 'BK003', date: '2023-10-25', amount: '$45.75', type: 'Card', status: 'Pending' },
-    { id: 'TRN004', bookingId: 'BK004', date: '2023-10-24', amount: '$32.20', type: 'Card', status: 'Completed' },
-    { id: 'TRN005', bookingId: 'BK005', date: '2023-10-24', amount: '$0.00', type: 'N/A', status: 'Refunded' },
-    { id: 'TRN006', bookingId: 'BK006', date: '2023-10-23', amount: '$55.00', type: 'Card', status: 'Completed' },
+    { id: 'TRN001', bookingId: 'BK001', date: '2023-10-26', amount: '₹350', type: 'Card', status: 'Completed' },
+    { id: 'TRN002', bookingId: 'BK002', date: '2023-10-25', amount: '₹200', type: 'Cash', status: 'Completed' },
+    { id: 'TRN003', bookingId: 'BK003', date: '2023-10-25', amount: '₹275', type: 'Card', status: 'Pending' },
+    { id: 'TRN004', bookingId: 'BK004', date: '2023-10-24', amount: '₹180', type: 'Card', status: 'Completed' },
+    { id: 'TRN005', bookingId: 'BK005', date: '2023-10-24', amount: '₹0.00', type: 'N/A', status: 'Refunded' },
+    { id: 'TRN006', bookingId: 'BK006', date: '2023-10-23', amount: '₹450', type: 'Card', status: 'Completed' },
 ];
 
 export default function TransactionsPage() {

@@ -77,7 +77,7 @@ export function CabForm({ cab, onSave }: { cab?: any; onSave: () => void }) {
               <FormItem>
                 <FormLabel>License Plate</FormLabel>
                 <FormControl>
-                  <Input placeholder="e.g. NYC-1234" {...field} />
+                  <Input placeholder="e.g. MH-43-1234" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -92,7 +92,7 @@ export function CabForm({ cab, onSave }: { cab?: any; onSave: () => void }) {
               <FormItem>
                 <FormLabel>Current Location</FormLabel>
                 <FormControl>
-                  <Input placeholder="e.g. Downtown" {...field} />
+                  <Input placeholder="e.g. Vashi" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
