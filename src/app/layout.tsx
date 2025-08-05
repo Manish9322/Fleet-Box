@@ -1,9 +1,8 @@
-"use client";
-
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import type { Metadata } from 'next';
-import ReduxProvider from '../components/ReduxProvider';
+import store from '../../services/store';
+import { Provider } from 'react-redux';
 
 export const metadata: Metadata = {
   title: 'Fleet-Box',
@@ -22,11 +21,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased">
-        <ReduxProvider>
+      <body className="font-body antialiased" >
+        <Provider store={store}>
           {children}
-        </ReduxProvider>
         <Toaster />
+        </Provider>
       </body>
     </html>
   );
