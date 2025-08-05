@@ -1,9 +1,9 @@
-import type { Metadata } from 'next';
+"use client";
+
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import { Provider } from 'react-redux';
-import { store } from '@/services/store'; // Assuming your store is here
-
+import type { Metadata } from 'next';
+import ReduxProvider from '../components/ReduxProvider';
 
 export const metadata: Metadata = {
   title: 'Fleet-Box',
@@ -23,9 +23,9 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
- <Provider store={store}>
+        <ReduxProvider>
           {children}
- </Provider>
+        </ReduxProvider>
         <Toaster />
       </body>
     </html>
