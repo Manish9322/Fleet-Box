@@ -23,6 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
+import { useCreateDriverMutation, useUpdateDriverMutation } from "@/services/api"
 
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -36,6 +37,8 @@ const formSchema = z.object({
 export function DriverForm({ driver, onSave }: { driver?: any; onSave: () => void }) {
   const { toast } = useToast()
   const form = useForm<z.infer<typeof formSchema>>({
+    // @ts-ignore
+
     resolver: zodResolver(formSchema),
     defaultValues: driver || {
       name: "",
@@ -47,11 +50,31 @@ export function DriverForm({ driver, onSave }: { driver?: any; onSave: () => voi
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    toast({
-      title: driver ? "Driver Updated" : "Driver Added",
-      description: `The driver "${values.name}" has been successfully ${driver ? 'updated' : 'added'}.`,
-    })
+  const [createDriver, { isLoading: isCreating }] = useCreateDriverMutation();
+  const [updateDriver, { isLoading: isUpdating }] = useUpdateDriverMutation();
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      if (driver) {
+        await updateDriver({ id: driver._id, ...values }).unwrap();
+        toast({
+          title: "Driver Updated",
+          description: `The driver "${values.name}" has been successfully updated.`,
+        });
+      } else {
+        await createDriver(values).unwrap();
+        toast({
+          title: "Driver Added",
+          description: `The driver "${values.name}" has been successfully added.`,
+        });
+      }
+    } catch (error: any) {
+      toast({
+        title: "Operation failed",
+        description: `Error: ${error?.data?.message || "An unexpected error occurred."}`,
+        variant: "destructive",
+      });
+    }
     onSave()
   }
 
@@ -150,7 +173,7 @@ export function DriverForm({ driver, onSave }: { driver?: any; onSave: () => voi
           )}
         />
         <div className="flex justify-end pt-4">
-          <Button type="submit">Save changes</Button>
+          <Button type="submit" disabled={isCreating || isUpdating}>{isCreating || isUpdating ? "Saving..." : "Save changes"}</Button>
         </div>
       </form>
     </Form>

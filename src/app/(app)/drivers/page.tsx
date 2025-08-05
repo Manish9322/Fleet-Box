@@ -29,65 +29,14 @@ import { MoreHorizontal, Search } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { AddDriverDialog, EditDriverDialog, ViewDriverDialog } from "./_components/driver-dialogs";
-
-const drivers = [
-  {
-    id: "DRV001",
-    name: "Manish Sonawane",
-    email: "manish.sonawane@gmail.com",
-    phone: "+91-9876543210",
-    vehicle: "Toyota Camry",
-    status: "Active",
-    avatarUrl: "https://placehold.co/40x40.png"
-  },
-  {
-    id: "DRV002",
-    name: "Vrutik Patil",
-    email: "vrutik.patil@gmail.com",
-    phone: "+91-9876543211",
-    vehicle: "Honda Accord",
-    status: "Active",
-    avatarUrl: "https://placehold.co/40x40.png"
-  },
-  {
-    id: "DRV003",
-    name: "Sangram Rajput",
-    email: "sangram.rajput@gmail.com",
-    phone: "+91-9876543212",
-    vehicle: "Ford Fusion",
-    status: "Inactive",
-    avatarUrl: "https://placehold.co/40x40.png"
-  },
-  {
-    id: "DRV004",
-    name: "Tejas Khairnar",
-    email: "tejas.khairnar@gmail.com",
-    phone: "+91-9876543213",
-    vehicle: "Chevrolet Malibu",
-    status: "Active",
-    avatarUrl: "https://placehold.co/40x40.png"
-  },
-  {
-    id: "DRV005",
-    name: "Harshal Mutadak",
-    email: "harshal.mutadak@gmail.com",
-    phone: "+91-9876543214",
-    vehicle: "Nissan Altima",
-    status: "On-leave",
-    avatarUrl: "https://placehold.co/40x40.png"
-  },
-  {
-    id: "DRV006",
-    name: "Shubham Vanarse",
-    email: "shubham.vanarse@gmail.com",
-    phone: "+91-9876543215",
-    vehicle: "Hyundai Sonata",
-    status: "Active",
-    avatarUrl: "https://placehold.co/40x40.png"
-  },
-];
+import { useGetDriversQuery, useDeleteDriverMutation } from "@/services/api";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useToast } from "@/hooks/use-toast";
 
 export default function DriversPage() {
+  const { data: drivers, error, isLoading } = useGetDriversQuery({});
+  const [deleteDriver, { isLoading: isDeleting }] = useDeleteDriverMutation();
+
   return (
     <Card>
       <CardHeader>
@@ -121,8 +70,26 @@ export default function DriversPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {drivers.map((driver) => (
-              <TableRow key={driver.id}>
+            {isLoading && (
+              Array.from({ length: 5 }).map((_, index) => (
+                <TableRow key={index}>
+                  <TableCell><Skeleton className="h-8 w-32" /></TableCell>
+                  <TableCell><Skeleton className="h-8 w-24" /></TableCell>
+                  <TableCell><Skeleton className="h-8 w-24" /></TableCell>
+                  <TableCell className="text-center"><Skeleton className="h-8 w-16 mx-auto" /></TableCell>
+                  <TableCell className="text-right"><Skeleton className="h-8 w-8 ml-auto" /></TableCell>
+                </TableRow>
+              ))
+            )}
+            {error && (
+              <TableRow>
+                <TableCell colSpan={5} className="text-center text-destructive">
+                  Failed to load drivers.
+                </TableCell>
+              </TableRow>
+            )}
+            {drivers && drivers.map((driver) => (
+              <TableRow key={driver._id}>
                 <TableCell>
                   <div className="flex items-center gap-3">
                     <Avatar>
@@ -140,35 +107,39 @@ export default function DriversPage() {
                 <TableCell className="text-center">
                   <Badge
                     variant={
-                      driver.status === "Active"
-                        ? "default"
-                        : driver.status === "Inactive"
-                        ? "destructive"
-                        : "secondary"
+                      driver.status === "Active" ? "default" : driver.status === "Inactive" ? "destructive" : "secondary"
                     }
                   >
                     {driver.status}
                   </Badge>
                 </TableCell>
                 <TableCell className="text-right">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button aria-haspopup="true" size="icon" variant="ghost">
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                      <EditDriverDialog driver={driver}>
-                        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>Edit</DropdownMenuItem>
-                      </EditDriverDialog>
-                      <ViewDriverDialog driver={driver}>
-                        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>View Details</DropdownMenuItem>
-                      </ViewDriverDialog>
-                      <DropdownMenuItem className="text-destructive">Deactivate</DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                <DropdownMenu modal={false}>
+                  <DropdownMenuTrigger asChild>
+                    <Button aria-haspopup="true" size="icon" variant="ghost">
+                      <MoreHorizontal className="h-4 w-4" />
+                      <span className="sr-only">Toggle menu</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                    <EditDriverDialog driver={driver}><DropdownMenuItem onSelect={(e) => e.preventDefault()}>Edit</DropdownMenuItem></EditDriverDialog>
+                    <ViewDriverDialog driver={driver}><DropdownMenuItem onSelect={(e) => e.preventDefault()}>View Details</DropdownMenuItem></ViewDriverDialog>
+                    <DropdownMenuItem className="text-destructive">Deactivate</DropdownMenuItem>
+ <DropdownMenuItem
+ className="text-destructive"
+ onSelect={async (e) => {
+                  e.preventDefault();
+                  try {
+ await deleteDriver(driver._id).unwrap();
+ useToast().toast({ title: "Driver Deactivated", description: `Driver ${driver.name} has been deactivated.` });
+                  } catch (err) {
+ useToast().toast({ title: "Deactivation Failed", description: `Could not deactivate driver ${driver.name}.`, variant: "destructive" });
+                  }
+ }}
+ >Deactivate</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
                 </TableCell>
               </TableRow>
             ))}
