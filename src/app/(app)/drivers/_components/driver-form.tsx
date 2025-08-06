@@ -53,6 +53,9 @@ export function DriverForm({ driver, onSave }: { driver?: any; onSave: () => voi
   const [createDriver, { isLoading: isCreating }] = useCreateDriverMutation();
   const [updateDriver, { isLoading: isUpdating }] = useUpdateDriverMutation();
 
+
+  console.log("Rendering Component form");
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       if (driver) {

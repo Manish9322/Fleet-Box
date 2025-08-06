@@ -1,11 +1,10 @@
+"use client";
 
-"use client"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,27 +12,41 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { useToast } from "@/hooks/use-toast"
+} from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import {
+  useCreateCabMutation,
+  useUpdateCabMutation,
+} from "../../../../../services/api";
 
 const formSchema = z.object({
   model: z.string().min(1, "Model is required"),
-  licensePlate: z.string().min(1, "License plate is required"),
+  licensePlate: z
+    .string()
+    .min(1, "License plate is required")
+    .regex(
+      /^[A-Z]{2}[0-9]{2}-[A-Z]{2}-[0-9]{4}$/,
+      "License plate must follow the format MH43-AD-1234 (e.g., two letters, two numbers, hyphen, two letters, hyphen, four numbers)"
+    ),
   location: z.string().min(1, "Location is required"),
   status: z.enum(["Available", "Booked", "Maintenance"]),
-  imageUrl: z.string().url({ message: "Please enter a valid URL." }).optional().or(z.literal('')),
-})
+  imageUrl: z
+    .string()
+    .url({ message: "Please enter a valid URL." })
+    .optional()
+    .or(z.literal("")),
+});
 
 export function CabForm({ cab, onSave }: { cab?: any; onSave: () => void }) {
-  const { toast } = useToast()
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: cab || {
@@ -43,14 +56,36 @@ export function CabForm({ cab, onSave }: { cab?: any; onSave: () => void }) {
       status: "Available",
       imageUrl: "",
     },
-  })
+  });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    toast({
-      title: cab ? "Cab Updated" : "Cab Added",
-      description: `The cab "${values.model}" has been successfully ${cab ? 'updated' : 'added'}.`,
-    })
-    onSave()
+  const [createCab, { isLoading: isCreating }] = useCreateCabMutation();
+  const [updateCab, { isLoading: isUpdating }] = useUpdateCabMutation();
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      if (cab) {
+        await updateCab({ id: cab._id, ...values }).unwrap();
+        toast({
+          title: "Cab Updated",
+          description: `The cab "${values.model}" has been successfully updated.`,
+        });
+      } else {
+        await createCab(values).unwrap();
+        toast({
+          title: "Cab Added",
+          description: `The cab "${values.model}" has been successfully added.`,
+        });
+      }
+      onSave();
+    } catch (error: any) {
+      toast({
+        title: "Operation failed",
+        description: `Error: ${
+          error?.data?.message || "An unexpected error occurred."
+        }`,
+        variant: "destructive",
+      });
+    }
   }
 
   return (
@@ -77,7 +112,7 @@ export function CabForm({ cab, onSave }: { cab?: any; onSave: () => void }) {
               <FormItem>
                 <FormLabel>License Plate</FormLabel>
                 <FormControl>
-                  <Input placeholder="e.g. MH-43-1234" {...field} />
+                  <Input placeholder="e.g. MH43-AD-1234" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -104,7 +139,10 @@ export function CabForm({ cab, onSave }: { cab?: any; onSave: () => void }) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Status</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select a status" />
@@ -128,16 +166,21 @@ export function CabForm({ cab, onSave }: { cab?: any; onSave: () => void }) {
             <FormItem>
               <FormLabel>Image URL</FormLabel>
               <FormControl>
-                <Input placeholder="https://placehold.co/64x64.png" {...field} />
+                <Input
+                  placeholder="https://placehold.co/64x64.png"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <div className="flex justify-end pt-4">
-          <Button type="submit">Save changes</Button>
+          <Button type="submit" disabled={isCreating || isUpdating}>
+            {isCreating || isUpdating ? "Saving..." : "Save changes"}
+          </Button>
         </div>
       </form>
     </Form>
-  )
+  );
 }

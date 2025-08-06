@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react"
@@ -17,7 +16,16 @@ import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import { PlusCircle } from "lucide-react"
 
-export function AddCabDialog() {
+interface Cab {
+  _id: string;
+  model: string;
+  licensePlate: string;
+  location: string;
+  status: "Available" | "Booked" | "Maintenance";
+  imageUrl: string;
+}
+
+export function AddCabDialog({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -39,7 +47,7 @@ export function AddCabDialog() {
   )
 }
 
-export function EditCabDialog({ cab, children }: { cab: any, children: React.ReactNode }) {
+export function EditCabDialog({ cab, children }: { cab: Cab, children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -57,7 +65,7 @@ export function EditCabDialog({ cab, children }: { cab: any, children: React.Rea
   )
 }
 
-export function ViewCabDialog({ cab, children }: { cab: any, children: React.ReactNode }) {
+export function ViewCabDialog({ cab, children }: { cab: Cab, children: React.ReactNode }) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>

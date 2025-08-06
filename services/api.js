@@ -5,6 +5,8 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
   tagTypes: ["Post", "User", "DBStatus", "Driver"],
   endpoints: (builder) => ({
+    // ============================================ DB Connection Check ============================================
+
     getDbStatus: builder.query({
       query: () => "/test-connection",
       providesTags: ["DBStatus"],
@@ -17,11 +19,15 @@ export const api = createApi({
       query: (id) => `posts/${id}`,
       providesTags: (result, error, id) => [{ type: "Post", id }],
     }),
+
+    // ============================================ Driver Endpoints ============================================
+
     getDrivers: builder.query({
       query: () => "/drivers",
       providesTags: ["Driver"],
       transformResponse: (response) => response.drivers,
     }),
+
     createDriver: builder.mutation({
       query: (driver) => ({
         url: "/drivers",
@@ -30,6 +36,7 @@ export const api = createApi({
       }),
       invalidatesTags: ["Driver"],
     }),
+
     updateDriver: builder.mutation({
       query: ({ id, ...driver }) => ({
         url: "/drivers",
@@ -38,6 +45,7 @@ export const api = createApi({
       }),
       invalidatesTags: ["Driver"],
     }),
+
     deleteDriver: builder.mutation({
       query: (id) => ({
         url: "/drivers",
@@ -46,15 +54,59 @@ export const api = createApi({
       }),
       invalidatesTags: ["Driver"],
     }),
+
+    // ============================================ Cab Endpoints ============================================
+
+    getCabs: builder.query({
+      query: () => "/cabs",
+      providesTags: ["Cab"],
+      transformResponse: (response) => response.cabs,
+    }),
+
+    createCab: builder.mutation({
+      query: (cab) => ({
+        url: "/cabs",
+        method: "POST",
+        body: cab,
+      }),
+      invalidatesTags: ["Cab"],
+    }),
+
+    updateCab: builder.mutation({
+      query: ({ id, ...cab }) => ({
+        url: "/cabs",
+        method: "PUT",
+        body: { id, ...cab },
+      }),
+      invalidatesTags: ["Cab"],
+    }),
+
+    deleteCab: builder.mutation({
+      query: (id) => ({
+        url: "/cabs",
+        method: "DELETE",
+        body: { id },
+      }),
+      invalidatesTags: ["Cab"],
+    }),
   }),
 });
 
 export const {
+  // DB Connection Check
   useGetDbStatusQuery,
   useGetPostsQuery,
   useGetPostQuery,
+
+  // Driver Endpoints
   useGetDriversQuery,
   useCreateDriverMutation,
   useUpdateDriverMutation,
   useDeleteDriverMutation,
+
+  // Cab Endpoints
+  useGetCabsQuery,
+  useCreateCabMutation,
+  useUpdateCabMutation,
+  useDeleteCabMutation,
 } = api;

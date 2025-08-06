@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import _db from "../../../../services/db";
 import Driver from "../../../../models/Driver.model";
 
-await _db;
+await _db();
 
 export async function GET() {
   try {
@@ -26,10 +26,7 @@ export async function POST(request) {
       !body.status
     ) {
       return NextResponse.json(
-        {
-          success: false,
-          message: "Missing input field.",
-        },
+        { success: false, message: "Missing input field." },
         { status: 400 }
       );
     }
@@ -120,7 +117,6 @@ export async function DELETE(request) {
         { status: 400 }
       );
     }
-
     const driver = await Driver.findByIdAndDelete(id);
 
     if (!driver) {
@@ -129,7 +125,6 @@ export async function DELETE(request) {
         { status: 404 }
       );
     }
-
     return NextResponse.json(
       {
         success: true,

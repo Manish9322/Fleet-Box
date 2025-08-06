@@ -1,13 +1,15 @@
+// src/app/layout.tsx
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import type { Metadata } from 'next';
-import store from '../../services/store';
-import { Provider } from 'react-redux';
+import Providers from './providers';
 
 export const metadata: Metadata = {
   title: 'Fleet-Box',
   description: 'Manage your fleet with ease.',
 };
+
+console.log("Rendering Component root.");
 
 export default function RootLayout({
   children,
@@ -21,11 +23,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased" >
-        <Provider store={store}>
+      <body className="font-body antialiased">
+        <Providers>
           {children}
-        <Toaster />
-        </Provider>
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
