@@ -1,4 +1,3 @@
-// models/Driver.model.js
 import mongoose from "mongoose";
 
 const DriverSchema = new mongoose.Schema(
@@ -15,10 +14,10 @@ const DriverSchema = new mongoose.Schema(
       trim: true,
       match: [/^\S+@\S+\.\S+$/, "Please enter a valid email address."],
     },
-    vehicle: {
-      type: String,
-      required: true,
-      trim: true,
+    cabId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Cab",
+      required: false,
     },
     phone: {
       type: String,
@@ -46,6 +45,5 @@ const DriverSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const DriverModel =
-  mongoose.models.Driver || mongoose.model("Driver", DriverSchema);
-export default DriverModel; // Export the model, not the schema
+const DriverModel = mongoose.models.Driver || mongoose.model("Driver", DriverSchema);
+export default DriverModel;

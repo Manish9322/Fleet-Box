@@ -1,15 +1,13 @@
-// src/app/layout.tsx
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import type { Metadata } from 'next';
 import Providers from './providers';
+import ClientHeaderWrapper from '@/components/ClientHeaderWrapper';
 
 export const metadata: Metadata = {
   title: 'Fleet-Box',
   description: 'Manage your fleet with ease.',
 };
-
-console.log("Rendering Component root.");
 
 export default function RootLayout({
   children,
@@ -25,6 +23,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <Providers>
+          <ClientHeaderWrapper />
           {children}
           <Toaster />
         </Providers>

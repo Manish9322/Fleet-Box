@@ -44,9 +44,9 @@ interface Driver {
   _id: string;
   name: string;
   email: string;
-  vehicle: string;
-  status: string;
+  cabId: { model: string; licensePlate: string } | null;
   phone: string;
+  status: string;
   avatarUrl: string;
 }
 
@@ -58,6 +58,9 @@ export default function DriversPage() {
     error,
     refetch,
   } = useGetDriversQuery(undefined);
+
+  console.log("Drivers data:", drivers);
+
   const [deleteDriver, { isLoading: isDeleting }] = useDeleteDriverMutation();
   const { toast } = useToast();
 
@@ -245,7 +248,7 @@ export default function DriversPage() {
           <TableHeader>
             <TableRow>
               <TableHead>Driver</TableHead>
-              <TableHead>Vehicle</TableHead>
+              <TableHead>Assigned Cab</TableHead>
               <TableHead>Contact</TableHead>
               <TableHead className="text-center">Status</TableHead>
               <TableHead>
@@ -266,7 +269,6 @@ export default function DriversPage() {
                       />
                       <AvatarFallback>{driver.name.charAt(0)}</AvatarFallback>
                     </Avatar>
-
                     <div>
                       <div className="font-medium">{driver.name}</div>
                       <div className="text-muted-foreground text-xs">
@@ -275,7 +277,9 @@ export default function DriversPage() {
                     </div>
                   </div>
                 </TableCell>
-                <TableCell>{driver.vehicle}</TableCell>
+                <TableCell>
+                  {driver.cabId ? `${driver.cabId.model} - ${driver.cabId.licensePlate}` : "No cab assigned"}
+                </TableCell>
                 <TableCell>{driver.phone}</TableCell>
                 <TableCell className="text-center">
                   <Badge

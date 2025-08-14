@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
-  tagTypes: ["Post", "User", "DBStatus", "Driver"],
+  tagTypes: ["Post", "User", "DBStatus", "Driver", "Cab", "Booking", "Auth"],
   endpoints: (builder) => ({
     // ============================================ DB Connection Check ============================================
 
@@ -89,6 +89,120 @@ export const api = createApi({
       }),
       invalidatesTags: ["Cab"],
     }),
+
+    // ============================================ Users Endpoints ============================================
+
+    getUsers: builder.query({
+      query: () => "/users",
+      providesTags: ["User"],
+      transformResponse: (response) => response.users,
+    }),
+
+    createUser: builder.mutation({
+      query: (user) => ({
+        url: "/users",
+        method: "POST",
+        body: user,
+      }),
+      invalidatesTags: ["User"],
+    }),
+
+    updateUser: builder.mutation({
+      query: ({ id, ...user }) => ({
+        url: "/users",
+        method: "PUT",
+        body: { id, ...user },
+      }),
+      invalidatesTags: ["User"],
+    }),
+
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: "/users",
+        method: "DELETE",
+        body: { id },
+      }),
+      invalidatesTags: ["User"],
+    }),
+
+    // ============================================ Booking Endpoints ============================================
+
+    getBookings: builder.query({
+      query: () => "/bookings",
+      providesTags: ["Booking"],
+      transformResponse: (response) => response.bookings,
+    }),
+
+    createBooking: builder.mutation({
+      query: (booking) => ({
+        url: "/bookings",
+        method: "POST",
+        body: booking,
+      }),
+      invalidatesTags: ["Booking"],
+    }),
+
+    updateBooking: builder.mutation({
+      query: ({ id, ...booking }) => ({
+        url: "/bookings",
+        method: "PUT",
+        body: { id, ...booking },
+      }),
+      invalidatesTags: ["Booking"],
+    }),
+
+    deleteBooking: builder.mutation({
+      query: (id) => ({
+        url: "/bookings",
+        method: "DELETE",
+        body: { id },
+      }),
+      invalidatesTags: ["Booking"],
+    }),
+
+    // ============================================ Auth Endpoints ============================================
+
+    signIn: builder.mutation({
+      query: (credentials) => ({
+        url: "/signin",
+        method: "POST",
+        body: credentials,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
+
+    getCurrentUser: builder.query({
+      query: () => {
+        const userId = localStorage.getItem("userId");
+        if (!userId) {
+          throw new Error("No user ID found in local storage");
+        }
+        return `/users?id=${userId}`;
+      },
+      providesTags: ["Auth"],
+      transformResponse: (response) => response.user,
+    }),
+
+    signInAdmin: builder.mutation({
+      query: (credentials) => ({
+        url: "/admin/signin",
+        method: "POST",
+        body: credentials,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
+
+    getCurrentAdmin: builder.query({
+      query: () => {
+        const adminId = localStorage.getItem("adminId");
+        if (!adminId) {
+          throw new Error("No admin ID found in local storage");
+        }
+        return `/users?id=${adminId}`;
+      },
+      providesTags: ["Auth"],
+      transformResponse: (response) => response.user,
+    }),
   }),
 });
 
@@ -109,4 +223,23 @@ export const {
   useCreateCabMutation,
   useUpdateCabMutation,
   useDeleteCabMutation,
+
+  // User Endpoints
+  useGetUsersQuery,
+  useCreateUserMutation,
+  useUpdateUserMutation,
+  useDeleteUserMutation,
+
+  // Booking Endpoints
+  useGetBookingsQuery,
+  useCreateBookingMutation,
+  useUpdateBookingMutation,
+  useDeleteBookingMutation,
+
+  // Auth Endpoints
+  useSignInMutation,
+  useGetCurrentUserQuery,
+  useSignInAdminMutation,
+  useGetCurrentAdminQuery,
+
 } = api;

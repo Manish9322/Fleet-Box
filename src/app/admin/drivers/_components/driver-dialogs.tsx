@@ -18,14 +18,15 @@ import { PlusCircle } from "lucide-react";
 
 export function AddDriverDialog({ children }: { children?: React.ReactNode }) {
   const [open, setOpen] = useState(false);
-  console.log("Rendering Component dialog");
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>
-          <PlusCircle className="mr-2 h-4 w-4" /> Add Driver
-        </Button>
+        {children || (
+          <Button>
+            <PlusCircle className="mr-2 h-4 w-4" /> Add Driver
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -95,8 +96,8 @@ export function ViewDriverDialog({
           <div className="grid grid-cols-2 gap-2 text-sm">
             <p className="text-muted-foreground">Phone</p>
             <p>{driver.phone}</p>
-            <p className="text-muted-foreground">Vehicle</p>
-            <p>{driver.vehicle}</p>
+            <p className="text-muted-foreground">Assigned Cab</p>
+            <p>{driver.cabId ? `${driver.cabId.model} - ${driver.cabId.licensePlate}` : "No cab assigned"}</p>
             <p className="text-muted-foreground">Status</p>
             <p>
               <Badge

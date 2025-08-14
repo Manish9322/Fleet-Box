@@ -1,12 +1,20 @@
 import { NextResponse } from "next/server";
 import _db from "../../../../services/db";
 import Driver from "../../../../models/Driver.model";
+import Cab from "../../../../models/Cab.model"; // <-- Add this line
+
 
 await _db();
 
 export async function GET() {
   try {
-    const drivers = await Driver.find({}).sort({ createdAt: -1 });
+    const drivers = await Driver.find({})
+      .populate({
+        path: "cabId",
+        select: "model licensePlate",
+        strictPopulate: false, // Allow population even if cabId is missing in some documents
+      })
+      .sort({ createdAt: -1 });
     return NextResponse.json({ drivers }, { status: 200 });
   } catch (error) {
     console.error("Error fetching drivers:", error);
@@ -18,15 +26,9 @@ export async function POST(request) {
   try {
     const body = await request.json();
 
-    if (
-      !body.name ||
-      !body.email ||
-      !body.vehicle ||
-      !body.phone ||
-      !body.status
-    ) {
+    if (!body.name || !body.email || !body.phone || !body.status) {
       return NextResponse.json(
-        { success: false, message: "Missing input field." },
+        { success: false, message: "Missing required input fields." },
         { status: 400 }
       );
     }
@@ -34,10 +36,11 @@ export async function POST(request) {
     const driverData = {
       name: body.name,
       email: body.email,
-      vehicle: body.vehicle,
+      cabId: body.cabId || null, // Allow cabId to be optional
       phone: body.phone,
       status: body.status,
       avatarUrl: body.avatarUrl || "",
+      cabId : body.cabId || "",
     };
 
     const newDriver = new Driver(driverData);
@@ -73,6 +76,11 @@ export async function PUT(request) {
         { success: false, message: "Driver ID is required." },
         { status: 400 }
       );
+    }
+
+    // Allow cabId to be optional in updates
+    if (updateData.cabId === "") {
+      updateData.cabId = null;
     }
 
     const driver = await Driver.findByIdAndUpdate(id, updateData, {
